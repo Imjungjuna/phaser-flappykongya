@@ -5,8 +5,13 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 const config = {
   type: Phaser.AUTO,
-  width: isMobile ? window.innerWidth : window.innerWidth > 288 ? 288 : window.innerWidth,
-  height: isMobile ? window.innerHeight : window.innerHeight > 512 ? 512 : window.innerHeight,
+  // width: isMobile ? window.innerWidth : window.innerWidth > 288 ? 288 : window.innerWidth,
+  // height: isMobile ? window.innerHeight : window.innerHeight > 512 ? 512 : window.innerHeight,
+  scale: {
+    mode: Phaser.Scale.FIT, // 화면 비율 유지하면서 꽉 차게
+    width: 288,
+    height: 512,
+  },
   physics: {
     default: "arcade",
     arcade: {
@@ -120,10 +125,13 @@ function create() {
     bird.setActive(true).setVisible(true); // Show && activate bird
     bird.setVelocityY(0); // Reset bird velocity
 
-    scoreText = this.add.text(game.config.width / 2, 40, "0", {
-      fontSize: "42px",
-      fontFamily: "Fantasy",
-      fill: "white",
+    scoreText = this.add.text(game.config.width / 2, 30, "0", {
+      fontFamily: "PressStart2P",
+      fontSize: "40px",
+      fontStyle: "bold", // 굵게!
+      color: "#ffffff",
+      stroke: "#000000",
+      strokeThickness: 2, // 테두리 줘서 더 선명하게
     });
     scoreText.setOrigin(0.5, 0.5);
     scoreText.setDepth(1);
